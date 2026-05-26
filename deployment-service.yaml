@@ -3,8 +3,6 @@ kind: Deployment # Kubernetes resource kind we are creating
 metadata:
   name: boardgame-deployment
 spec:
-  imagePullSecrets:
-    - name: dockerhub-secret
   selector:
     matchLabels:
       app: boardgame
@@ -14,6 +12,8 @@ spec:
       labels:
         app: boardgame
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
         - name: boardgame
           image: nsindiso/boardgame:latest # Image that will be used to containers in the cluster
